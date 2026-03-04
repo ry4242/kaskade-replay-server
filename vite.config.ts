@@ -6,8 +6,11 @@ export default defineConfig({
   plugins: [react()],
   base: "./",
   build: {
-    outDir: "../pokemon-showdown-client/play.pokemonshowdown.com/replays",
+    outDir: "../kaskade-showdown-client/play.pokemonshowdown.com/replays",
     rollupOptions: {
+      input: {
+        client: 'testclient.html',
+      },
       output: {
         manualChunks: {
           react: ["react", "react-dom"],
