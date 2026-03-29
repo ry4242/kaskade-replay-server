@@ -23,24 +23,50 @@ month_to_index = {
 def fix_species(species):
     if (species.startswith("Alcremie")):
         return "Alcremie"
-    if (species.startswith("Magearna")):
-        return "Magearna"
-    if (species.startswith("Polteageist")):
-        return "Polteageist"
-    if (species.startswith("Keldeo")):
-        return "Keldeo"
-    if (species.startswith("Minior")):
-        return "Minior"
-    if (species.startswith("Pikachu")):
-        return "Pikachu"
-    if (species.startswith("Sawsbuck")):
-        return "Sawsbuck"
-    if (species.startswith("Maushold")):
-        return "Maushold"
+    if (species.startswith("Deerling")):
+        return "Deerling"
     if (species.startswith("Dudunsparce")):
         return "Dudunsparce"
+    if (species.startswith ("Flabe\u0301be\u0301")):
+        return 'Flabe\u0301be\u0301'
+    if (species.startswith ("Floette")):
+        return 'Floette'
+    if (species.startswith ("Florges")):
+        return 'Florges'
+    if (species.startswith ("Gastrodon")):
+        return 'Gastrodon'
+    if (species.startswith("Keldeo")):
+        return "Keldeo"
+    if (species.startswith("Magearna")):
+        return "Magearna"
+    if (species.startswith("Maushold")):
+        return "Maushold"
+    if (species.startswith ("Minior")):
+        return 'Minior'
+    if (species.startswith("Pikachu")):
+        return "Pikachu"
+    if (species.startswith("Poltchageist")):
+        return "Poltchageist"
+    if (species.startswith("Polteageist")):
+        return "Polteageist"
+    if (species.startswith("Sawsbuck")):
+        return "Sawsbuck"
+    if (species.startswith("Shellos")):
+        return "Shellos"
+    if (species.startswith ("Sinistcha")):
+        return 'Sinistcha'
+    if (species.startswith ("Sinistea")):
+        return 'Sinistea'
+    if (species.startswith ("Tatsugiri")):
+        return 'Tatsugiri'
+    if (species.startswith ("Toxtricity")):
+        return 'Toxtricity'
     if (species.startswith("Vivillon")):
         return "Vivillon"
+    if (species.startswith("Botnyak")): # swse
+        return "Botnyak"
+    if (species.startswith("Castform-Wh")): # swse
+        return "Castform-Whirly"
     return species
 
 

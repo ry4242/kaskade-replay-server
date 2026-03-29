@@ -114,7 +114,7 @@ export function ReplayDatagrid({
         rows={rrows}
         columns={columns}
         getRowId={(r) => r["id"] ?? ""}
-        initialState={{ pagination: { paginationModel } }}
+        initialState={{ pagination: { paginationModel }, sorting: { sortModel: [{ field: "date", sort: "desc" }] } }}
         pageSizeOptions={[10, 20, 50, 100]}
         checkboxSelection
         slots={{ toolbar: GridToolbar2 }}
