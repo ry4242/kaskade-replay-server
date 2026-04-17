@@ -5,24 +5,37 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useState } from "react";
 import GridToolbar2 from "./GridToolbar2";
 import { ReplayRow } from "./readCsv";
 
+function formatReplayDate(value: unknown): string {
+  if (!(value instanceof Date) || Number.isNaN(value.getTime())) {
+    return "Unknown";
+  }
+
+  return value.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
+}
+
 const columns: GridColDef[] = [
   {
-    field: "date",
+    field: "dateMs",
     headerName: "Date",
     type: "dateTime",
     flex: 8,
-    valueGetter: (p) => new Date(p),
-    renderCell: (params) =>
-      new Date(params.value).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-      }),
+    valueGetter: (value) =>
+      typeof value === "number" && Number.isFinite(value) ? new Date(value) : null,
+    renderCell: (params) => formatReplayDate(params.value),
+    sortComparator: (v1, v2) => {
+      const t1 = v1 instanceof Date && !Number.isNaN(v1.getTime()) ? v1.getTime() : -Infinity;
+      const t2 = v2 instanceof Date && !Number.isNaN(v2.getTime()) ? v2.getTime() : -Infinity;
+      return t1 - t2;
+    },
   },
   { field: "tier", headerName: "Tier", flex: 10, width: 100 },
   { field: "p1", headerName: "Winner", flex: 10 },
@@ -34,7 +47,7 @@ const columns: GridColDef[] = [
     field: "link",
     headerName: "Link",
     flex: 20,
-    renderCell: (params: any) => {
+    renderCell: (params: GridRenderCellParams<ReplayRow, string>) => {
       const row = params.row as ReplayRow;
       return (
         <Link href={row.link} target="_blank" rel="noopener noreferrer">
@@ -114,7 +127,10 @@ export function ReplayDatagrid({
         rows={rrows}
         columns={columns}
         getRowId={(r) => r["id"] ?? ""}
-        initialState={{ pagination: { paginationModel }, sorting: { sortModel: [{ field: "date", sort: "desc" }] } }}
+        initialState={{
+          pagination: { paginationModel },
+          sorting: { sortModel: [{ field: "dateMs", sort: "desc" }] },
+        }}
         pageSizeOptions={[10, 20, 50, 100]}
         checkboxSelection
         slots={{ toolbar: GridToolbar2 }}
