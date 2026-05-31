@@ -3,7 +3,7 @@ import csv
 import json
 import re
 
-server_location = "https://kaskadeshowdown.dynv6.net"
+server_location = "https://kaskadeshowdown.com"
 
 month_to_index = {
     'Jan': '01',
