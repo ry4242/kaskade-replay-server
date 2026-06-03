@@ -4,7 +4,7 @@ import os
 import re
 from collections import defaultdict
 
-replay_embed_location="https://kaskadeshowdown.com/js/replay-embed.js"
+replay_embed_location="https://play.kaskadeshowdown.com/js/replay-embed.js"
 # Helpful to avoid regenerating replays to speed up script
 old_months = ["2023-01", "2023-02", "2023-03", "2023-04",
               "2023-05", "2023-06", "2023-07", "2023-08",
